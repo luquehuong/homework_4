@@ -1,7 +1,6 @@
 from graphics import Point, Rectangle, GraphWin
 from wheel import Wheel
 
-
 class Car():
     WHEEL_TO_TIRE_RATIO = 0.6
 
@@ -24,8 +23,15 @@ class Car():
         self.back_wheel.draw(win)
         self.front_wheel.draw(win)
 
+    def move(self, dx, dy):
+        self.back_wheel.move(dx, dy)
+        self.front_wheel.move(dx, dy)
+        self.body.move(dx, dy)
+
     def animate(self, win, dx, dy, n):
-        pass
+        if n > 0:
+            self.move(dx, dy)
+            win.after(10, self.animate, win, dx, dy, n - 1)
 
 def main():
     win = GraphWin("An Awesome Car", 700, 300)
@@ -33,7 +39,9 @@ def main():
     car = Car(Point(50, 50), 15, Point(100,50), 15, 40)
     car.set_color('black', 'gray', 'pink')
     car.draw(win)
+    car.animate(win, 1, 0, 550)
 
     win.mainloop()
 
-main()
+if __name__ == '__main__':
+    main()

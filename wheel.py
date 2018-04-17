@@ -61,4 +61,5 @@ def main():
 # Comment this call to main() when you import this code into
 #  your car.py file - otherwise the Wheel will pop up when you
 #  try to run your car code.
-main()
+if __name__ == '__main__':
+    main()
